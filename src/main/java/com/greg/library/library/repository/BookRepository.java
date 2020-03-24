@@ -10,7 +10,7 @@ public interface BookRepository extends CrudRepository<Book, Long> {
 
     Book findByName(String name);
 
-    Book save(Book book);
+//    Book save(Book book);
 
     void delete(Book book);
 
