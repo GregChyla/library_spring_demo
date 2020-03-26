@@ -5,7 +5,6 @@ import com.greg.library.library.mapper.BookMapper;
 import com.greg.library.library.model.Book;
 import com.greg.library.library.service.BookService;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.data.annotation.AccessType;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +25,7 @@ public class BookController {
         this.bookMapper = bookMapper;
     }
 
-    @GetMapping("/books")
+    @GetMapping ()
     public List<BookDTO> getAllBooks() {
         List<Book> books = bookService.findAll();
         return books.stream()
@@ -40,7 +39,7 @@ public class BookController {
         return bookMapper.mapBookEntityToDto(bookService.findByName(name));
     }
 
-    @PostMapping(value = "/save")
+    @PostMapping (value = "/save")
     public ResponseEntity<?> saveOrUpdateBook(@RequestBody BookDTO bookDTO) {
         bookService.save(bookMapper.mapBookDtoToEntity(bookDTO));
         return new ResponseEntity<>("Book saved", HttpStatus.OK);

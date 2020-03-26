@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import java.time.LocalDateTime;
+
 @Slf4j
 @ControllerAdvice
 public class GlobalExceptionHandler {
@@ -20,6 +22,7 @@ public class GlobalExceptionHandler {
         log.error("NULL POINTER: " + e.getMessage());
         message.setMessage("NULL POINTER " + e.getMessage());
         message.setHttpStatus(HttpStatus.INTERNAL_SERVER_ERROR);
+        message.setTimestamp(LocalDateTime.now());
 
         return message;
     }
